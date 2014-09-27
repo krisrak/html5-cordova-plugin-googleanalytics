@@ -3,6 +3,11 @@
 <head>
     <title>Cordova Google Analytics</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+body {font-family:Arial}  
+#log {color:#777}
+#log > div:first-child {color:#111}        
+    </style>
 </head>
 <body>
     <br>
@@ -17,7 +22,7 @@
         <button onclick="registerGAPage()">Track Page</button>
         <br>
         <br>
-        <h3 id="log"></h3>
+        <div id="log"></div>
     </div>
     <script src="cordova.js"></script>
     <script>
@@ -42,22 +47,28 @@
             
             // window.plugins.gaPlugin.trackEvent(successHandler, errorHandler, EVENT_CATEGORY, EVENT_ACTION, EVENT_LABEL, EVENT_VALUE);
             
-            window.plugins.gaPlugin.trackEvent( function(){
-                document.getElementById("log").innerHTML = "GA event tracking successful";
-            }, function(){
-                document.getElementById("log").innerHTML = "GA event tracking error";
-            }, "TestCategory", "TestAction", "TestEvent", 1);    
+            window.plugins.gaPlugin.trackEvent( 
+                function(){
+                    document.getElementById("log").innerHTML = "<div>GA event tracking successful</div>" + document.getElementById("log").innerHTML;
+                }, 
+                function(){
+                    document.getElementById("log").innerHTML = "<div>GA event tracking error</div>" + document.getElementById("log").innerHTML;
+                }, 
+                "TestCategory", "TestAction", "TestLabel", 1);    
         }
         
         function registerGAPage(){
             
             // window.plugins.gaPlugin.trackPage(successHandler, errorHandler, PAGE_NAME);
             
-            window.plugins.gaPlugin.trackPage( function(){
-                document.getElementById("log").innerHTML = "GA page tracking successful";
-            }, function(){
-                document.getElementById("log").innerHTML = "GA page tracking error";
-            }, "com.intel.gaplugin");    
+            window.plugins.gaPlugin.trackPage( 
+                function(){
+                    document.getElementById("log").innerHTML = "<div>GA page tracking successful</div>" + document.getElementById("log").innerHTML;
+                }, 
+                function(){
+                    document.getElementById("log").innerHTML = "<div>GA page tracking error</div>" + document.getElementById("log").innerHTML;
+                }, 
+                "com.intel.gaplugin");    
         }
         
         document.addEventListener("deviceready", onDeviceReady, true);
