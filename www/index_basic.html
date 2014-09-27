@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cordova Google Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+<body>
+    <br>
+    <h1>Google Analytics</h1>
+    <div>
+        <button onclick="registerGAEvent()">Track Event</button>
+        <br>
+        <br>
+        <button onclick="registerGAPage()">Track Page</button>
+    </div>
+    <script src="cordova.js"></script>
+    <script>
+        
+        function onDeviceReady() {
+            
+            var gaId = "UA-2417064-43";
+            
+            // window.plugins.gaPlugin.init(successHandler, errorHandler, ACCOUNT_ID, UPLOAD_INTERVAL);
+            
+            window.plugins.gaPlugin.init(null, null, gaId, 10);
+        }
+        
+        function registerGAEvent(){
+            
+            // window.plugins.gaPlugin.trackEvent(successHandler, errorHandler, EVENT_CATEGORY, EVENT_ACTION, EVENT_LABEL, EVENT_VALUE);
+            
+            window.plugins.gaPlugin.trackEvent(null, null, "TestCategory", "TestAction", "TestLabel", 1);    
+        }
+        
+        function registerGAPage(){
+            
+            // window.plugins.gaPlugin.trackPage(successHandler, errorHandler, PAGE_NAME);
+            
+            window.plugins.gaPlugin.trackPage(null, null, "com.intel.gaplugin");    
+        }
+        
+        document.addEventListener("deviceready", onDeviceReady, true);
+        
+    </script>    
+</body>
+</html>
